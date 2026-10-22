@@ -1,35 +1,49 @@
-# culinary-loanwords
-An interactive 3D exploration of how non-English culinary words, their etymologies, and their sentence contexts relate to restaurant price tiers.
-# Etymology 3D
+## Data and Method
 
-An interactive 3D exploration of how non-English culinary words, their etymologies, and their sentence contexts relate to restaurant price tiers.
+### Michelin Guide Data
 
-## Overview
+I compiled a list of 18,812 Michelin Guide restaurant URLs and scraped their public detail pages using Python, `requests`, and BeautifulSoup. For each restaurant, I collected its name, address, cuisine categories, Michelin distinction, editorial description, website, and displayed price category.
 
-Etymology 3D examines how non-English culinary terms are used in Michelin Guide restaurant descriptions. I trace each word’s linguistic origin, analyze the sentence in which it appears, and visualize how its framing relates to casual and luxury dining language.
+I converted Michelin’s currency-symbol categories into four numerical price tiers by counting the displayed currency symbols. The resulting dataset contains 18,800 restaurant descriptions and 18,065 restaurants with usable price-tier information.
 
-## Method
+### Identifying Foreign-Origin Culinary Terms
 
-I first identify non-English culinary terms and collect information about their linguistic origins. For every occurrence of a term, I extract the full sentence surrounding it.
+I tokenized and lemmatized the Michelin descriptions using spaCy. I retained alphabetic lemmas longer than two characters that did not appear in a combined English reference vocabulary constructed from the NLTK Words corpus and Brown Corpus.
 
-I encode these sentence contexts using the `all-MiniLM-L6-v2` sentence-embedding model. I then apply a multinomial logistic-regression classifier trained on Michelin restaurant descriptions labeled with four price tiers.
+To reduce accidental tokens, typographical errors, restaurant names, and personal names, I retained only candidate lemmas appearing at least three times across the corpus. This threshold is a practical screening rule rather than a statistically optimized cutoff.
 
-For each sentence, the classifier estimates how closely its language resembles the language associated with each price tier. I summarize these probabilities as a **contextual price-register score**, ranging from casual-associated to luxury-associated language.
+I queried the Merriam-Webster Collegiate Dictionary API for each candidate’s definition, part of speech, etymology, and first recorded use in English. Terms with a documented non-English origin were classified as borrowed terms. Candidates absent from Merriam-Webster were treated as potentially foreign and reviewed further.
 
-## 3D Visualization
+Because dictionary entries can be ambiguous in culinary contexts, I used GPT-4o-mini as a secondary review step for unmatched terms, geographical and biographical names, and entries whose dictionary classification did not fit their use in restaurant descriptions. Therefore, the resulting vocabulary represents foreign-origin culinary terms identified through corpus screening, dictionary evidence, and contextual review; it should not be interpreted as an exhaustive inventory of all non-English words.
 
-Each word is positioned using three dimensions:
+### Context Extraction
 
-- **Luxury-language association:** How strongly the word’s contexts resemble language used for higher-priced restaurants.
-- **Price responsiveness:** How much the word’s framing changes across actual restaurant price tiers.
-- **Contextual variability:** How differently the word is framed across sentences.
+For each identified term, I extracted the complete sentence in which it appeared rather than using a fixed-width character window. Sentence boundaries were detected with a rule-based splitter that preserved common abbreviations, and terms were matched case-insensitively using word boundaries.
 
-Point color represents the word’s linguistic origin, while point size represents the number of sentence contexts in which the word appears.
+Multi-word culinary expressions were identified through exact phrase matching. Individual components should be merged into a phrase only when the complete phrase appears in that same sentence. Standalone uses of a component remain separate observations. Duplicate term–restaurant–sentence records are removed after phrase resolution.
 
-## Interpretation
+### Contextual Price Register
 
-The visualization shows how the same culinary term can take on different meanings or signals depending on its surrounding language. A word may consistently appear in luxury-associated language, shift its framing across price tiers, or vary substantially from one context to another.
+I encoded both complete Michelin descriptions and term-containing sentences using the 384-dimensional `all-MiniLM-L6-v2` sentence-embedding model.
 
-## Important Note
+I trained a multinomial logistic-regression classifier on restaurant-description embeddings labeled with Michelin’s four price tiers. When applied to a sentence, the classifier returns four probabilities indicating how closely the sentence resembles the language associated with each price tier.
 
-This project does **not** predict a restaurant’s actual price. It measures associations between sentence-level language and the linguistic styles found across Michelin price tiers. The results are correlational and should not be interpreted as causal.
+I summarize these probabilities as a contextual price-register score:
+
+`Price-register score = Σ P(tier k) × k`, for `k = 1, 2, 3, 4`.
+
+A higher value indicates stronger similarity to language associated with higher-priced restaurants. It is not an estimate of the restaurant’s actual price.
+
+### 3D Visualization
+
+For each term with at least ten price-labeled sentence contexts, I calculate:
+
+- **Mean price-register score:** the term’s average association with casual- or luxury-oriented language.
+- **Price responsiveness:** the Pearson correlation between the restaurant’s actual price tier and the sentence-level price-register score.
+- **Contextual variability:** the standard deviation of the term’s price-register scores across sentences.
+
+
+
+### Limitations
+
+This is an exploratory analysis of linguistic associations. It does not establish that particular words cause higher prices or predict a restaurant’s actual price. The vocabulary-selection threshold is heuristic, dictionary coverage is incomplete, and language origin can be ambiguous. Cuisine, geography, Michelin distinction, and restaurant style may also influence both vocabulary and price-related language.
