@@ -1,0 +1,208 @@
+  :root{
+    --cream:#faf6ef; --paper:#fffdf8; --ink:#2b2420; --muted:#7d7266;
+    --line:#e7ddcd; --red:#8c2f2a; --gold:#b8893a; --shadow:0 10px 40px rgba(60,40,20,.10);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--cream); color:var(--ink);
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    line-height:1.6; font-size:18px; -webkit-font-smoothing:antialiased;
+  }
+  .sans{font-family:"Cormorant Garamond","Iowan Old Style",Georgia,serif;}
+  a{color:var(--red)}
+  h1,h2,h3{line-height:1.12; font-weight:600; letter-spacing:-.01em}
+  .display,.hero-title h1,section h2,.card .word{
+    font-family:"Cormorant Garamond","Iowan Old Style",Georgia,serif; letter-spacing:0;}
+  .hero-title h1{font-weight:500}
+  section h2{font-weight:600}
+  .wrap{max-width:1040px; margin:0 auto; padding:0 24px}
+
+  /* ---- top nav ---- */
+  nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(8px);
+      background:rgba(250,246,239,.82); border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex; align-items:center; gap:22px; height:54px}
+  nav .brand{font-weight:700; letter-spacing:.02em; margin-right:auto}
+  nav .brand b{color:var(--red)}
+  nav a{font-size:14px; color:var(--muted); text-decoration:none}
+  nav a:hover{color:var(--ink)}
+  @media(max-width:720px){nav a.hideSm{display:none}}
+
+  /* ---- hero ---- */
+  header.hero{padding:86px 0 54px; text-align:center}
+  .kicker{font:600 13px/1 "Cormorant Garamond","Iowan Old Style",Georgia,serif; letter-spacing:.18em;
+          text-transform:uppercase; color:var(--gold)}
+  header.hero h1{font-size:clamp(34px,6vw,62px); margin:18px auto 12px; max-width:16ch}
+  header.hero p.lede{font-size:clamp(18px,2.4vw,22px); color:#4b4138; max-width:60ch; margin:0 auto}
+  .scrollcue{margin-top:34px}
+  .btn{display:inline-block; cursor:pointer; border:1px solid var(--ink); background:var(--ink);
+       color:var(--cream); padding:12px 22px; border-radius:40px; font:600 15px/1 "Cormorant Garamond","Iowan Old Style",Georgia,serif;
+       text-decoration:none; transition:.15s}
+  .btn:hover{transform:translateY(-1px); box-shadow:var(--shadow)}
+  .btn.ghost{background:transparent; color:var(--ink)}
+
+  .stat-row{display:flex; gap:40px; justify-content:center; flex-wrap:wrap; margin:46px 0 0}
+  .stat b{display:block; font-size:34px; color:var(--red)}
+  .stat span{font:600 12px/1.3 "Cormorant Garamond","Iowan Old Style",Georgia,serif; letter-spacing:.06em; text-transform:uppercase; color:var(--muted)}
+
+  section{padding:60px 0; border-top:1px solid var(--line)}
+  section h2{font-size:clamp(26px,3.4vw,36px); margin:0 0 6px}
+  section .sub{color:var(--muted); font:400 19px/1.55 inherit; margin:0 0 28px; max-width:62ch}
+
+  /* ---- method steps ---- */
+  .steps{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px}
+  .step{background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:20px 20px 22px}
+  .step .n{font:700 13px/1 "Cormorant Garamond","Iowan Old Style",Georgia,serif; color:var(--gold); letter-spacing:.1em}
+  .step h3{font-size:19px; margin:10px 0 6px}
+  .step p{margin:0; font-size:15px; color:#5c5248}
+  .note{font-size:14px; color:var(--muted); margin-top:18px}
+
+  /* ---- controls ---- */
+  .panel{background:var(--paper); border:1px solid var(--line); border-radius:16px; padding:20px; box-shadow:var(--shadow)}
+  .filters{display:flex; flex-direction:column; gap:14px; margin-bottom:8px}
+  .filterrow{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+  .filterrow .lbl{font:700 11px/1 "Cormorant Garamond","Iowan Old Style",Georgia,serif; letter-spacing:.08em; text-transform:uppercase;
+                  color:var(--muted); min-width:58px}
+  .pill{cursor:pointer; border:1px solid var(--line); background:#fff; color:#4b4138;
+        padding:7px 15px; border-radius:30px; font:500 15px/1 "Cormorant Garamond","Iowan Old Style",Georgia,serif; transition:.12s}
+  .pill:hover{border-color:var(--gold)}
+  .pill.on{background:var(--ink); color:var(--cream); border-color:var(--ink)}
+  .searchwrap{margin-left:auto}
+  .searchwrap input{font:15px "Cormorant Garamond","Iowan Old Style",Georgia,serif; padding:8px 14px; border:1px solid var(--line);
+        border-radius:30px; width:200px; background:#fff; color:var(--ink)}
+  .count{font:600 14.5px/1 "Cormorant Garamond","Iowan Old Style",Georgia,serif; color:var(--muted); margin:6px 2px 0}
+  .count b{color:var(--red)}
+
+  .chartcard{margin-top:18px}
+  .chart{width:100%}
+
+  /* ---- word grid ---- */
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-top:8px}
+  .chip{cursor:pointer; background:var(--paper); border:1px solid var(--line); border-radius:12px;
+        padding:11px 13px; transition:.12s; position:relative; overflow:hidden}
+  .chip:hover{border-color:var(--gold); transform:translateY(-1px); box-shadow:var(--shadow)}
+  .chip .w{font-size:19px; font-weight:600}
+  .chip .o{font:600 11px/1.3 "Cormorant Garamond","Iowan Old Style",Georgia,serif; letter-spacing:.04em; text-transform:uppercase; color:var(--muted)}
+  .chip .bar{height:4px; border-radius:3px; margin-top:8px; background:var(--line)}
+  .chip .bar i{display:block; height:100%; border-radius:3px}
+  .loadmore{text-align:center; margin-top:18px}
+
+  /* ---- modal word card ---- */
+  .overlay{position:fixed; inset:0; background:rgba(30,20,12,.5); display:none;
+           align-items:center; justify-content:center; z-index:100; padding:22px}
+  .overlay.show{display:flex}
+  .card{background:var(--paper); border-radius:18px; max-width:620px; width:100%;
+        max-height:88vh; overflow:auto; box-shadow:0 30px 80px rgba(0,0,0,.35); position:relative}
+  .card .x{position:absolute; top:14px; right:16px; cursor:pointer; font-size:26px; line-height:1;
+           color:var(--muted); background:none; border:none}
+  .card .head{padding:30px 32px 20px; border-bottom:1px solid var(--line)}
+  .card .word{font-size:40px; font-weight:600; letter-spacing:-.02em}
+  .card .pron{color:var(--muted); font-style:italic; margin-left:4px; font-size:19px}
+  .card .meta{font:600 12.5px/1 "Cormorant Garamond","Iowan Old Style",Georgia,serif; letter-spacing:.04em; text-transform:uppercase;
+              color:var(--gold); margin-top:10px}
+  .card .def{font-size:21px; line-height:1.45; margin:16px 0 0; color:var(--ink)}
+  .card .def.none{color:var(--muted); font-style:italic; font-size:18px}
+  .card .ety{font-size:15px; color:#5c5248; margin-top:12px; font-style:italic}
+  .card .body{padding:22px 32px 30px}
+  .metrics{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:6px}
+  .metric{flex:1; min-width:130px; background:var(--cream); border:1px solid var(--line); border-radius:12px; padding:12px 14px}
+  .metric .mv{font-size:27px; font-weight:600}
+  .metric .ml{font:600 13.5px/1.35 "Cormorant Garamond","Iowan Old Style",Georgia,serif; letter-spacing:0; text-transform:none; color:var(--muted); margin-bottom:6px}
+  .metric .mv{margin-top:0}
+  .metric .mh{font-size:14px; color:#8a7f73; margin-top:4px; font-family:"Cormorant Garamond","Iowan Old Style",Georgia,serif}
+  .exlabel{font:600 20px/1.3 "Cormorant Garamond","Iowan Old Style",Georgia,serif; letter-spacing:0; text-transform:none;
+           color:var(--ink); margin:24px 0 12px}
+  .ex{border-left:3px solid var(--line); padding:4px 0 4px 14px; margin:12px 0; font-size:15.5px; color:#3b332c}
+  .ex .tag{display:inline-block; font:600 11px/1 "Cormorant Garamond","Iowan Old Style",Georgia,serif; color:#fff; border-radius:20px;
+           padding:4px 9px; margin-top:7px; letter-spacing:.03em}
+
+  footer{padding:50px 0 70px; color:var(--ink); font-size:15px; text-align:center; border-top:1px solid var(--line)}
+  #diners{image-rendering:pixelated; image-rendering:crisp-edges; width:180px; height:auto; display:block; margin:0 auto 24px}
+  .footer-cols{display:flex; gap:48px; max-width:780px; margin:0 auto; text-align:left; justify-content:center; flex-wrap:wrap}
+  .fcol{flex:1; min-width:280px; font-size:16px; line-height:1.6}
+  .fcol p{margin:0 0 12px}
+  .fcol .byline{font-family:"Cormorant Garamond",Georgia,serif; font-style:italic; font-size:23px; color:var(--ink); margin-top:4px}
+  .disclaimer{max-width:620px; margin:30px auto 0; font-size:12.5px; color:#a99}
+  .about{max-width:600px; margin:0 auto; text-align:left; font-size:13.5px; line-height:1.65; color:#4b4138}
+  .about p{margin:0 0 12px}
+  .about .byline{font-family:"Cormorant Garamond",Georgia,serif; font-style:italic; font-size:21px; color:var(--ink); margin:16px 0 0; text-align:center}
+  .about-meta{max-width:600px; margin:30px auto 0; text-align:left; font-size:12.5px; line-height:1.6; color:var(--muted); border-top:1px solid var(--line); padding-top:22px}
+  .about-meta h4{font:700 11px/1 -apple-system,BlinkMacSystemFont,sans-serif; letter-spacing:.1em; text-transform:uppercase; color:#8a7f73; margin:0 0 12px}
+  .about-meta p{margin:0 0 9px}
+  .about-meta b{color:#4b4138}
+  .about-meta .disclaimer{margin:14px 0 0; max-width:none; color:#a99}
+  .epigraph{padding:54px 0 8px; text-align:center}
+  .epigraph .epi-q{font-family:"Cormorant Garamond",Georgia,serif; font-style:italic; font-size:clamp(22px,3vw,31px); color:var(--ink); max-width:24ch; margin:0 auto; line-height:1.25}
+  .epigraph .epi-src{font-size:14px; color:var(--muted); margin-top:12px}
+  .axis-key{display:flex; gap:22px; flex-wrap:wrap; margin-top:14px; font-size:16px; color:#5c5248}
+  .axis-key b{color:var(--ink)}
+  .togglewrap{margin-top:10px; font:14px "Cormorant Garamond","Iowan Old Style",Georgia,serif; color:var(--muted)}
+  .togglewrap input{vertical-align:middle; margin-right:6px}
+
+  /* ---- bubble hero ---- */
+  header.hero{position:relative; overflow:hidden; min-height:100vh; display:flex; flex-direction:column; background:#ffffff}
+  .hero-title{position:relative; z-index:3; padding:60px 24px 6px; pointer-events:none; text-align:center}
+  .hero-title h1{font-size:clamp(34px,5.5vw,58px); line-height:1.02; margin:0 auto 6px; max-width:16ch; color:var(--ink)}
+  .hero-title h1 em{font-style:italic; color:var(--red)}
+  section h2{font-size:clamp(30px,4vw,44px)}
+  header.hero canvas#bubbles{position:relative; z-index:1; flex:1 1 auto; width:100%; min-height:0; display:block}
+  .hero-cta{position:absolute; left:0; right:0; bottom:24px; text-align:center; z-index:4; pointer-events:none}
+  .hero-cta a{pointer-events:auto}
+  .host{position:absolute; left:6%; top:54%; transform:translateY(-50%); display:flex; flex-direction:column; align-items:center; gap:8px}
+  @media(max-width:760px){ .host{position:static; transform:none; margin:0 auto 12px} }
+  #server{image-rendering:pixelated; image-rendering:crisp-edges; width:96px; height:auto; display:block;
+      animation:bob 2.4s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+  .say{position:relative; background:#fff; border:1px solid var(--line); border-radius:13px; padding:8px 15px;
+      font-family:"Cormorant Garamond",Georgia,serif; font-style:italic; font-size:21px; color:var(--ink);
+      box-shadow:var(--shadow); white-space:nowrap}
+  .say:after{content:""; position:absolute; left:50%; bottom:-8px; transform:translateX(-50%);
+      border-left:8px solid transparent; border-right:8px solid transparent; border-top:8px solid #fff}
+  .hero-hint{font:600 13px/1.3 "Cormorant Garamond","Iowan Old Style",Georgia,serif; letter-spacing:.04em; color:var(--muted); margin-top:6px}
+
+  /* ---- food / not-food reveal ---- */
+  .reveal{position:fixed; inset:0; z-index:90; display:none; align-items:center; justify-content:center; padding:24px}
+  .reveal.show{display:flex}
+  .reveal-bg{position:absolute; inset:0; background:rgba(30,20,12,.26)}
+  .reveal-box{position:relative; background:var(--paper); border:1px solid var(--line); border-radius:22px;
+      box-shadow:0 30px 80px rgba(0,0,0,.3); padding:30px 36px 26px; max-width:460px; text-align:center;
+      animation:pop .3s cubic-bezier(.2,1.35,.4,1)}
+  @keyframes pop{from{transform:scale(.55); opacity:0} to{transform:scale(1); opacity:1}}
+  .rv-x{position:absolute; top:10px; right:15px; border:none; background:none; font-size:24px; color:var(--muted); cursor:pointer; line-height:1}
+  .rv-guest-pixel{position:absolute; top:-66px; left:50%; transform:translateX(-50%); display:none; flex-direction:column; align-items:center; gap:5px; z-index:6}
+  .rv-guest-pixel.show{display:flex; animation:pop .35s cubic-bezier(.2,1.35,.4,1)}
+  #rvGuestCanvas{width:50px; height:auto; image-rendering:pixelated; image-rendering:crisp-edges; display:block}
+  .rv-guest-say{position:relative; background:#fff; border:1px solid var(--line); border-radius:12px; padding:6px 13px; font-family:"Cormorant Garamond",Georgia,serif; font-size:17px; color:var(--ink); box-shadow:var(--shadow); white-space:nowrap}
+  .rv-guest-say:after{content:""; position:absolute; left:50%; bottom:-7px; transform:translateX(-50%); border-left:7px solid transparent; border-right:7px solid transparent; border-top:7px solid #fff}
+  .rv-word{font-family:"Cormorant Garamond",Georgia,serif; font-size:44px; font-weight:600; line-height:1.05}
+  .rv-verdict{font:700 22px/1.25 "Cormorant Garamond","Iowan Old Style",Georgia,serif; margin-top:8px}
+  .rv-verdict.food{color:#5a8c2f} .rv-verdict.notfood{color:var(--red)} .rv-verdict.maybe{color:var(--gold)}
+  .rv-def{font-size:20px; color:#4b4138; margin-top:12px; line-height:1.5}
+  .rv-guess{margin-top:18px; padding-top:16px; border-top:1px solid var(--line)}
+  .rv-guess-q{font-family:"Cormorant Garamond",Georgia,serif; font-style:normal; font-size:20px; color:var(--ink); margin-bottom:8px}
+  .rv-guess-row{display:flex; gap:8px; justify-content:center}
+  .rv-guess-row input{flex:1; max-width:260px; font-size:16px; padding:9px 13px; border:1px solid var(--line); border-radius:30px; background:#fff; color:var(--ink); font-family:"Cormorant Garamond",Georgia,serif}
+  .rv-guess-row input:focus{outline:none; border-color:var(--gold)}
+  .rv-guess-row button{border:1px solid var(--ink); background:var(--ink); color:var(--cream); border-radius:30px; padding:9px 16px; cursor:pointer; font-size:15px; font-family:"Cormorant Garamond",Georgia,serif}
+  .rv-guess-done{font-style:italic; color:#5a8c2f; font-size:17px}
+  .rv-cta{margin-top:20px; display:flex; gap:14px; justify-content:center; align-items:center; flex-wrap:wrap; min-height:44px}
+  .rv-map{opacity:0; transform:translateY(8px); transition:opacity .9s ease, transform .9s ease; pointer-events:none; padding:11px 20px}
+  .rv-map.in{opacity:1; transform:none; pointer-events:auto}
+  .rv-more{background:none; border:none; color:var(--ink); font:600 18px "Cormorant Garamond","Iowan Old Style",Georgia,serif; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:8px}
+  .rv-more .rv-arrow{font-size:30px; line-height:1; color:var(--red)}
+  .rv-more:hover .rv-arrow{transform:translateX(3px)}
+  .rv-more .rv-arrow{transition:transform .15s ease}
+  .reveal-sec{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease}
+  .reveal-sec.in{opacity:1; transform:none}
+  /* filter pill rows must wrap, not spill past the panel edge */
+  #f-era,#f-pos,#f-origin{display:flex; flex-wrap:wrap; gap:8px; align-items:center; flex:1 1 0; min-width:0}
+  /* pixel service bell "new batch" button */
+  .bellbtn{display:inline-flex; align-items:center; gap:4px; padding:8px 10px; font-size:17px; border:none; background:none; box-shadow:none; color:var(--ink)}
+  .bellbtn:hover{box-shadow:none; transform:none}
+  .bellbtn:hover #bell{animation:bellring .55s ease}
+  .bellbtn span{position:relative; background:#fff; border:1px solid var(--line); border-radius:13px; padding:7px 15px; box-shadow:var(--shadow); font-family:"Cormorant Garamond",Georgia,serif; font-size:19px; color:var(--ink); line-height:1}
+  .bellbtn span:before{content:""; position:absolute; left:-7px; top:50%; transform:translateY(-50%); border-top:7px solid transparent; border-bottom:7px solid transparent; border-right:7px solid var(--line)}
+  .bellbtn span:after{content:""; position:absolute; left:-6px; top:50%; transform:translateY(-50%); border-top:6px solid transparent; border-bottom:6px solid transparent; border-right:6px solid #fff}
+  .bellbtn #bell{width:72px; height:auto; image-rendering:pixelated; image-rendering:crisp-edges; display:block}
+  .bellbtn.ring #bell{animation:bellring .55s ease}
+  @keyframes bellring{0%,100%{transform:rotate(0)}18%{transform:rotate(-16deg)}38%{transform:rotate(12deg)}58%{transform:rotate(-8deg)}78%{transform:rotate(4deg)}}
