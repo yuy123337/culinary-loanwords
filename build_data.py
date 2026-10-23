@@ -58,7 +58,7 @@ PHRASE_DEF = {
 SKIP = {'cheddar','dungeness','granola','eco','nola','shangri','luma','makis','pavlova','anglo','fledged',
  'morales','lutz','gama','pescatarian','pescetarian','glitz','glitzy'}
 # words removed by hand in the site (brand names, English words, mislabels)
-DROP = {'claypot','aubergine','retro','bistronomic','braised','valrhona','ajo','vivre','sik','foie','gras'}
+DROP = {'claypot','aubergine','retro','bistronomic','braised','valrhona','ajo','vivre','sik','foie','gras','yong'}
 BRIT = {'favourite','colourful','flavourful','flavoursome','colour','flavour','savour','savoury',
  'flavoured','coloured','honour','honoured','neighbourhood','speciality','specialities'}
 
